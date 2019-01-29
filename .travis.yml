@@ -1,0 +1,16 @@
+language: node_js
+node_js: lts/*
+env:
+  global:
+    - secure: g1q3MYCZ/xzzJR5KoaMlDacpup5n7MqK4OlNVntUsGre2sms21zsVYRCwNGXI6Y9gyVdpfgff/U3AuLZcG1ITZF5oiqKtxG5drwMR1lUJf5cpvyPms6sbwTCQ2T2LMOgZyod6QxUj8zy6mft/JuVhIWBFywwg8spD8RsLK6Hfmc83xy2spofxmnfxmauhkQqmH6j7Nu83RuX/Lyqpk2YpbJMQLTmnpRBwJwZeNZ0XiMlZ4Gv8g+l+G3jXM36PWH9LT2A74Vr6z+YkK1RAVHTtFt+8K4mkW34gu4tbU5c9U5LtNEPX4ige5qnop9VilDxStNwupSAHF8v175qOoW+lUez+itPE3IcvYzUlW5M08WJeVF0ZS7VtzUnD8Sk2aEApGzR/srOsxhn3IN4PPpdJeMUnGyskPL2xk4HfvFaKlmWcrZbthOnEml1+DrBCLXGA28aA6jz7jR+vzHCajob8aB64Lhge24O7pcFN+8I0vEiSCQLUChSqUaUoV1qFPTAP3zXoksQNT1iSmVK7Xgb4/2iZk1zpQwhTpdu7aomKGBKqTjD2VemzE3EZHUyXjPCYUenaI57Ti3sCH8BxG3hQ92gBwG6zPy1QY60OxftYMEFNSLnfv0qtRye25xLf9vuiFo2y/yig68iq+n2zZsME5JgEFuNKRu2oVZ0P6hmUm8=
+script:
+  - npm --prefix=./docs/ i
+  - npm --prefix=./docs/ run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: ./docs/.vuepress/dist/
+  github-token: $GITHUB_TOKEN # a token generated on github allowing travis to push code on you repository
+  keep-history: true
+  on:
+    branch: master

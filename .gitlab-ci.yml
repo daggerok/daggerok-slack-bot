@@ -1,0 +1,17 @@
+image: node:10.9.0
+pages:
+  cache:
+    paths:
+      - node_modules/
+  before_script:
+    - rm -rf public
+  script:
+    - npm i
+    - npm run build
+  after_script:
+    - mv -f .vuepress/dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
